@@ -1,0 +1,3 @@
+Here the idea is to take advantage of the for loop in target2.c that has its upper bound set to <= length.
+We can create a buffer that is one size larger than the buffer in target2.c
+You can fill that buffer with NOps and shellcode and the address of the shellcode. Then you want to put the LSB of the address of the shellcode into the last index of that buffer, since the loop will be including 1 more index than the size of the buffer, and that will point back to the shellcode to be executed.

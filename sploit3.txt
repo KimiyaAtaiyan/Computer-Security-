@@ -1,0 +1,13 @@
+Here the user is expected to provide a string and a count for the 
+number of widgets they want to input.
+The count value is multiplied by 64 (size of widget_t struct) and then the result is used as an argument for memcpy(). We can do an integer overflow in memcpy() by trying to get around the limit of 911 (size of widget struct) and overflow the buffer.
+
+I am filling the buffer with count, shellcode and the address of the shellcode that we are overwriting the return address with.
+The buffer is of size 912 * 64 = 58368 = 1110001111000000
+We pad that number with 0s to make it 32 bits, and add another 1 at the front making it 33 bits. Then converting that number to decimal. Loking at the 2s complement value of the 33bti decimal, we then divide it by 64 (size of struct) and that is the value we pass in as payload.
+
+For count I choose the number 4227859344 , which when turned into a signed integer, will be negative to pass (count < 911) but then multiplied by 64, the leading one will overflow and we get our result to be 58368, which is the length of the buffer we want to copy.
+
+
+Currently when I gdb and print (uint32_t)count*64 I get the correct size (58368) to be copied over, and count is negative when entering the if statement.
+But I get an error, which probably is being caused by not passing in the correct address for shellcode, eventhough I am using &buf.

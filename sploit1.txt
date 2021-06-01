@@ -1,0 +1,4 @@
+For this buf overflow I took advantage over strcpy in target1.c, 
+which does not check for bounds. 
+The idea is to overflowed buffer with the shellcode, and the address to be exeuted such that the returned address on the stack gets overflown by the content of the buffer, which at that position should have the address of the shellcode. 
+Then the program will conitnue executign what is at the address that overflowed the return address and will execute the shellcode.

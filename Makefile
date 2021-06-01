@@ -1,6 +1,25 @@
-all: timehack
+# tools
+CC := gcc
+RM := rm -f
 
-timehack: timehack.o sysapp.o
+# flags
+CFLAGS := -ggdb
+LDFLAGS :=
+LDLIBS :=
+
+# sources
+sources := sploit2.c
+targets := $(sources:.c=)
+
+# gmake magic
+.PHONY: default all clean
+
+#targets
+default: all
+all: $(targets)
 
 clean:
-	rm -f *.o *~ timehack
+	$(RM) $(targets) $(sources:.c=.o)
+
+#dependencies
+$(sources:.c=.o): shellcode.h
