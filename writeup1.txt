@@ -1,0 +1,6 @@
+For this problem I went based on the article and the given code example.
+We want to create a sandbox in order to taint some values. 
+For this part we are not actually validating the data which is why we are only using UNSAFE_verified() for the callback function of on_completion.
+This only unwraps the tainted value, without actually verifying it.
+
+Because we are working with strings, we have to allocate memory in the sandbox and later on free that memory and destroy the sandbox.

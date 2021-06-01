@@ -1,0 +1,1 @@
+For this part I tried many different varieties until I realized that overloading the second argument argv[2] of the command line, gets the program to segfault. That is because argv[2], which is result_str in main, never gets verified or checked anywhere, not even in on_completion, so I was able to make this the vulnerable part of the program.

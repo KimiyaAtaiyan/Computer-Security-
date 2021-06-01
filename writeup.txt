@@ -1,0 +1,3 @@
+Description of timehack functionality:
+Like mentioned in the writeup I took advantage of the median and an array of times that we collect to see how long the check function takes to see whether a character is valid. You find the longets time out of all characters at position so the system can determine which character is the corrct obe
+References used:

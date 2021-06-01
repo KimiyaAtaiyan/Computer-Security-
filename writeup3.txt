@@ -1,0 +1,2 @@
+Again, following the article and example code that was given: 
+This time we want to verify the text before we copy it over, which is why we no longer use UNSAFE_verified() but now we use copy_and_verify_string in on_completion, and when verified, we use checked_string.get() to copy it over into result_str, but only if it is not nullptr, and that is when it is within the correct length 
